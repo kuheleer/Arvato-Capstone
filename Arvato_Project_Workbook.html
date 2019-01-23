@@ -11775,8 +11775,13 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Capstone-Project:-Create-a-Customer-Segmentation-Report-for-Arvato-Financial-Services">Capstone Project: Create a Customer Segmentation Report for Arvato Financial Services<a class="anchor-link" href="#Capstone-Project:-Create-a-Customer-Segmentation-Report-for-Arvato-Financial-Services">&#182;</a></h1><p>In this project, you will analyze demographics data for customers of a mail-order sales company in Germany, comparing it against demographics information for the general population. You'll use unsupervised learning techniques to perform customer segmentation, identifying the parts of the population that best describe the core customer base of the company. Then, you'll apply what you've learned on a third dataset with demographics information for targets of a marketing campaign for the company, and use a model to predict which individuals are most likely to convert into becoming customers for the company. The data that you will use has been provided by our partners at Bertelsmann Arvato Analytics, and represents a real-life data science task.</p>
-<p>If you completed the first term of this program, you will be familiar with the first part of this project, from the unsupervised learning project. The versions of those two datasets used in this project will include many more features and has not been pre-cleaned. You are also free to choose whatever approach you'd like to analyzing the data rather than follow pre-determined steps. In your work on this project, make sure that you carefully document your steps and decisions, since your main deliverable for this project will be a blog post reporting your findings.</p>
+<h1 id="Capstone-Project:-Create-a-Customer-Segmentation-Report-for-Arvato-Financial-Services">Capstone Project: Create a Customer Segmentation Report for Arvato Financial Services<a class="anchor-link" href="#Capstone-Project:-Create-a-Customer-Segmentation-Report-for-Arvato-Financial-Services">&#182;</a></h1><h2 id="Business-Understanding">Business Understanding<a class="anchor-link" href="#Business-Understanding">&#182;</a></h2><p>The purporse of this project is to:</p>
+<ol>
+<li>analyze demographics data for customers of a mail-order sales company in Germany, comparing it against demographics information for the general population. </li>
+<li>use unsupervised learning techniques to perform customer segmentation, identifying the parts of the population that best describe the core customer base of the company. </li>
+<li>apply what you've learned on a third dataset with demographics information for targets of a marketing campaign for the company</li>
+<li>use a model to predict which individuals are most likely to convert into becoming customers for the company. </li>
+</ol>
 
 </div>
 </div>
@@ -11818,6 +11823,14 @@ div#notebook {
 <p>In the below cell, we've provided some initial code to load in the first two datasets. Note for all of the <code>.csv</code> data files in this project that they're semicolon (<code>;</code>) delimited, so an additional argument in the <a href="https://pandas.pydata.org/pandas-docs/stable/generated/pandas.read_csv.html"><code>read_csv()</code></a> call has been included to read in the data properly. Also, considering the size of the datasets, it may take some time for them to load completely.</p>
 <p>You'll notice when the data is loaded in that a warning message will immediately pop up. Before you really start digging into the modeling and analysis, you're going to need to perform some cleaning. Take some time to browse the structure of the data and look over the informational spreadsheets to understand the data values. Make some decisions on which features to keep, which features to drop, and if any revisions need to be made on data formats. It'll be a good idea to create a function with pre-processing steps, since you'll need to clean all of the datasets before you work with them.</p>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Data-Understanding">Data Understanding<a class="anchor-link" href="#Data-Understanding">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -14924,6 +14937,26 @@ Name: CAMEO_HOUSEHOLDS, dtype: int64</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Discussion-1.2.1:-Re-Encode-Categorical-Features">Discussion 1.2.1: Re-Encode Categorical Features<a class="anchor-link" href="#Discussion-1.2.1:-Re-Encode-Categorical-Features">&#182;</a></h4><p>To start with the count of each type of features viz, <strong>categorical, ordinal, mixed, numeric, interval</strong> is assessed.
+The categorical features are further analysed to whether they falls under the category of binary or multivalued.
+len(azdias_categorical):  18
+len(azdias_ordinal):  49
+len(azdias_mixed):  6
+len(azdias_numeric):  7
+len(azdias_interval):  1</p>
+<p>The multi categorical variables have been analysed individually.
+The features <strong>'CJT_GESAMTTYP', 'FINANZTYP', 'NATIONALITAET_KZ', 'SHOPPER_TYP', 'ZABEOTYP', 'GEBAEUDETYP'</strong>,all related to person-level features so the decision was to keep them and one hot encode them.</p>
+<p><strong>'GFK_URLAUBERTYP'</strong> provides information on the vacation habits of an individual which in turn reflects an attribute pertaining to an indiviual. Hence it is considered to be a reliable feature to be included for further analysis.</p>
+<p>Since "LP_FAMILIE_GROB" and  "LP_STATUS_GROB' summarizes the column "LP_FAMILIE_FEIN",and "LP_STATUS_FEIN" respectively, it has been decided to discard the columns "LP_FAMILIE_GROB" and  "LP_STATUS_GROB' as it would lead to redundant information.</p>
+<p>Compared to "CAMEO_DEUG_2015", "CAMEO_DEU_2015", provides a much detailed information about the wealth status of an individual which is not of much relevance for customer segmentation, hence keeping the rough scale should suffice.</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[51]:</div>
@@ -15160,6 +15193,296 @@ Name: CAMEO_HOUSEHOLDS, dtype: int64</pre>
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Keeping-around-15-to-20-principal-components-would-suffice-to-generate-around-50%-variance.">Keeping around 15 to 20 principal components would suffice to generate around 50% variance.<a class="anchor-link" href="#Keeping-around-15-to-20-principal-components-would-suffice-to-generate-around-50%-variance.">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[287]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">components</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[287]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>D19_KONSUMTYP_MAX             0.0028
+KOMBIALTER                    0.0023
+D19_GESAMT_DATUM              0.0020
+SEMIO_REL                     0.0017
+D19_VERSAND_DATUM             0.0017
+D19_GESAMT_ONLINE_DATUM       0.0015
+FINANZ_ANLEGER                0.0015
+FINANZ_UNAUFFAELLIGER         0.0014
+SEMIO_KRIT                    0.0014
+D19_VERSAND_ONLINE_DATUM      0.0013
+CJT_TYP_1                     0.0012
+CJT_TYP_2                     0.0012
+FINANZ_SPARER                 0.0011
+SEMIO_KAEM                    0.0011
+SEMIO_PFLICHT                 0.0009
+SEMIO_FAM                     0.0009
+SEMIO_DOM                     0.0009
+D19_GESAMT_OFFLINE_DATUM      0.0009
+D19_VERSAND_OFFLINE_DATUM     0.0008
+RT_KEIN_ANREIZ                0.0008
+SEMIO_MAT                     0.0007
+CJT_KATALOGNUTZER             0.0005
+SEMIO_RAT                     0.0005
+D19_VERSI_DATUM               0.0005
+FINANZTYP_4.0                 0.0004
+CJT_GESAMTTYP_6.0             0.0004
+LP_STATUS_FEIN_5.0            0.0004
+D19_BANKEN_DATUM              0.0004
+RT_SCHNAEPPCHEN               0.0003
+ZABEOTYP_3.0                  0.0003
+                               ...  
+KBA13_SITZE_4                -0.0016
+KBA05_AUTOQUOT               -0.0016
+KBA13_MERCEDES               -0.0016
+KBA13_SITZE_6                -0.0016
+KBA13_HERST_BMW_BENZ         -0.0016
+MOBI_REGIO                   -0.0017
+KBA05_MAXAH                  -0.0017
+PLZ8_GBZ                     -0.0017
+REGIOTYP                     -0.0017
+FIRMENDICHTE                 -0.0017
+KBA13_GBZ                    -0.0018
+SEMIO_VERT                   -0.0018
+GEBAEUDETYP_RASTER           -0.0018
+EWDICHTE                     -0.0018
+PLZ8_HHZ                     -0.0018
+KBA13_HHZ                    -0.0018
+D19_SONSTIGE                 -0.0019
+VK_DHT4A                     -0.0019
+W_KEIT_KIND_HH               -0.0019
+UMFELD_JUNG                  -0.0020
+VK_DISTANZ                   -0.0020
+BALLRAUM                     -0.0020
+ANZ_STATISTISCHE_HAUSHALTE   -0.0021
+ANZ_HAUSHALTE_AKTIV          -0.0022
+INNENSTADT                   -0.0023
+ORTSGR_KLS9                  -0.0024
+DECADE                       -0.0025
+WOHNDAUER_2008               -0.0038
+KBA13_ANZAHL_PKW             -0.3464
+MIN_GEBAEUDEJAHR             -0.9378
+Name: Dimension 1, Length: 621, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[288]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">components</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[288]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>KBA13_ANZAHL_PKW              0.9380
+KBA13_GBZ                     0.0018
+KBA13_HHZ                     0.0017
+PLZ8_GBZ                      0.0017
+PLZ8_HHZ                      0.0016
+KBA13_CCM_3001                0.0010
+KOMBIALTER                    0.0009
+D19_KONSUMTYP_MAX             0.0009
+KBA13_KMH_140                 0.0007
+SEMIO_REL                     0.0007
+FINANZ_ANLEGER                0.0006
+FINANZ_UNAUFFAELLIGER         0.0006
+KBA13_CCM_1500                0.0006
+D19_GESAMT_DATUM              0.0005
+KBA13_AUTOQUOTE               0.0005
+KBA13_KW_120                  0.0004
+CJT_TYP_1                     0.0004
+KBA13_KMH_0_140               0.0004
+SEMIO_FAM                     0.0004
+KBA13_ALTERHALTER_60          0.0003
+KBA13_MOTOR                   0.0003
+KBA13_KMH_251                 0.0003
+KBA13_KMH_110                 0.0003
+KBA13_HALTER_50               0.0003
+KBA13_HALTER_55               0.0003
+D19_VERSAND_DATUM             0.0003
+KBA13_KW_30                   0.0003
+FINANZ_SPARER                 0.0003
+SEMIO_KRIT                    0.0003
+SEMIO_MAT                     0.0003
+                               ...  
+KBA13_SITZE_5                -0.0006
+KBA13_FAB_SONSTIGE           -0.0006
+KBA13_HERST_SONST            -0.0006
+KBA05_ZUL1                   -0.0006
+KKK                          -0.0006
+KBA13_ALTERHALTER_30         -0.0006
+KBA13_ALTERHALTER_61         -0.0007
+VK_ZG11                      -0.0007
+KBA05_ALTER4                 -0.0007
+KBA05_MAXAH                  -0.0007
+KBA13_HALTER_66              -0.0007
+WEALTH                       -0.0008
+KBA13_HALTER_30              -0.0008
+KBA13_HALTER_35              -0.0008
+HH_EINKOMMEN_SCORE           -0.0009
+DECADE                       -0.0009
+W_KEIT_KIND_HH               -0.0009
+PLZ8_BAUMAX                  -0.0010
+REGIOTYP                     -0.0010
+KBA13_BAUMAX                 -0.0011
+VK_DHT4A                     -0.0011
+ARBEIT                       -0.0011
+VK_DISTANZ                   -0.0011
+WOHNDAUER_2008               -0.0012
+RELAT_AB                     -0.0016
+EWDICHTE                     -0.0017
+ORTSGR_KLS9                  -0.0023
+ANZ_STATISTISCHE_HAUSHALTE   -0.0035
+ANZ_HAUSHALTE_AKTIV          -0.0038
+MIN_GEBAEUDEJAHR             -0.3464
+Name: Dimension 2, Length: 621, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[289]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">components</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[289]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>ANZ_HAUSHALTE_AKTIV            0.7039
+ANZ_STATISTISCHE_HAUSHALTE     0.6976
+HH_EINKOMMEN_SCORE             0.0261
+VK_DHT4A                       0.0226
+FINANZ_HAUSBAUER               0.0222
+D19_GESAMT_ONLINE_DATUM        0.0207
+ORTSGR_KLS9                    0.0204
+D19_GESAMT_DATUM               0.0201
+D19_VERSAND_DATUM              0.0188
+D19_VERSAND_ONLINE_DATUM       0.0188
+VK_DISTANZ                     0.0178
+ANZ_HH_TITEL                   0.0177
+KBA13_BAUMAX                   0.0171
+PLZ8_BAUMAX                    0.0163
+WEALTH                         0.0153
+EWDICHTE                       0.0152
+AKT_DAT_KL                     0.0123
+KBA05_ANTG4                    0.0119
+VK_ZG11                        0.0110
+KBA13_ANTG3                    0.0099
+PLZ8_ANTG3                     0.0096
+SEMIO_KAEM                     0.0095
+KBA13_ANTG4                    0.0095
+PLZ8_ANTG4                     0.0092
+W_KEIT_KIND_HH                 0.0090
+SEMIO_KRIT                     0.0088
+CJT_KATALOGNUTZER              0.0083
+KBA05_FRAU                     0.0081
+D19_GESAMT_OFFLINE_DATUM       0.0079
+REGIOTYP                       0.0077
+                                ...  
+PLZ8_GBZ                      -0.0096
+KBA13_AUTOQUOTE               -0.0096
+KBA13_GBZ                     -0.0097
+KBA13_HALTER_55               -0.0098
+D19_KINDERARTIKEL             -0.0099
+KBA13_ALTERHALTER_60          -0.0101
+D19_VERSAND_ANZ_24            -0.0102
+ANZ_PERSONEN                  -0.0103
+D19_REISEN                    -0.0105
+D19_BUCH_CD                   -0.0107
+FIRMENDICHTE                  -0.0107
+KBA13_ANTG1                   -0.0108
+GEBAEUDETYP_RASTER            -0.0109
+D19_HAUS_DEKO                 -0.0110
+PLZ8_ANTG1                    -0.0114
+KBA05_AUTOQUOT                -0.0115
+D19_GESAMT_ANZ_24             -0.0119
+ONLINE_AFFINITAET             -0.0131
+D19_TECHNIK                   -0.0134
+BALLRAUM                      -0.0144
+INNENSTADT                    -0.0148
+KONSUMNAEHE                   -0.0153
+DECADE                        -0.0157
+FINANZ_MINIMALIST             -0.0191
+D19_VERSAND_ONLINE_QUOTE_12   -0.0224
+MOBI_RASTER                   -0.0225
+KBA05_GBZ                     -0.0226
+KBA05_ANTG1                   -0.0227
+D19_GESAMT_ONLINE_QUOTE_12    -0.0241
+MOBI_REGIO                    -0.0266
+Name: Dimension 3, Length: 621, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[58]:</div>
@@ -15295,6 +15618,14 @@ Name: CAMEO_HOUSEHOLDS, dtype: int64</pre>
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Considering-the-huge-amount-of-data,-it-would-be-useful-not-to-have-similarity-of-samples-between-two-clusters.-Since-15-clusters-would-also-provide-quite-a-less-amount-of-SSE,-it-would-be-a-good-choice">Considering the huge amount of data, it would be useful not to have similarity of samples between two clusters. Since 15 clusters would also provide quite a less amount of SSE, it would be a good choice<a class="anchor-link" href="#Considering-the-huge-amount-of-data,-it-would-be-useful-not-to-have-similarity-of-samples-between-two-clusters.-Since-15-clusters-would-also-provide-quite-a-less-amount-of-SSE,-it-would-be-a-good-choice">&#182;</a></h4>
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -16887,6 +17218,33 @@ Percentage of customers: 1.2383036171500394%
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Based-on-the-the-following-points-Adaboost-has-been-chosen-for-the-further-analysis">Based on the the following points Adaboost has been chosen for the further analysis<a class="anchor-link" href="#Based-on-the-the-following-points-Adaboost-has-been-chosen-for-the-further-analysis">&#182;</a></h3><p>Strengths:</p>
+
+<pre><code>is a Boosting type Ensemble Learning Method.
+Less prone to overfitting.
+It starts by assigning weight to each observation. If prediction is incorrect using the first learner, then it is assigned higher weight. Iteratively, this method adds learner(s) until a limit in the number of models or accuracy is reached.
+Does not require lot of parameters to be initialized.
+
+</code></pre>
+<p>Weaknesses:</p>
+
+<pre><code>noisy data and outliers in the data can affect the performance.
+Usage of a complex model as base learner can lead to overfitting.
+Training can be time-consuming.
+
+</code></pre>
+<p>Candidacy for the problem:</p>
+
+<pre><code>Data used for the problem is quite clean thereby making the iterative training quick and making overall accuracy better on unseen testing data.
+Slow training would not have much impact as the model needs to be run periodically rather than in real-time.</code></pre>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[155]:</div>
@@ -16964,6 +17322,23 @@ Classifier 1: Fold 5...
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Explanation-of-the-algorithm-used">Explanation of the algorithm used<a class="anchor-link" href="#Explanation-of-the-algorithm-used">&#182;</a></h2><p>AdaBoost stands for adaptive boosting which is used as a classifier algorithm. Usually Boosting is a term used for a general method for improving the performance of a single learning algorithm. One way to achieve this is by combining multiple weak classifiers into a strong classifier.</p>
+<p>Why we need to combine multiple algorithms? For example, if we consider height as the only deciding factor for classfying an individual as male or female, this would lead to lot of misclassification but might reach an accuracy of about 50%. This is an example of unit-depth decision tree where decision is governed by a single feature. Such unit-depth decision tree is called decision stump.</p>
+<p>Curse of dimensionality in decision tree: Continuing with the previous example, we start with height as a deciding factor. On realizing that height would not suffice to classify well, we add region as another descriptor and so on. This in turn increases the dimensionality of the classification model. This is referred as curse of dimensionality.</p>
+<p>One way to deal with such situation is to prune the decision tree to reduce the number of decision-making factors. A better way would be to use ensemble method that combines decision stumps by focusing on samples that are hard to classify. Adaboost is based on such an ensemble method.</p>
+<p>To summarize, a full-fledged feature set used as a classfier cannot run in real-time, hence the need of a simple learning algorithm. But an algorithm too simple would not lead to the desired accuracy, hence termed as weak learners. Thus, a weak learner is simply a classifier that has a poor performance but little better than random guessing. Adaboost algorithm boosts the performance of such weak learners by cascading them to create one strong learner.</p>
+<p>Why is the boosting adaptive? Each weak classifier is trained on a subset of the total training set. Starting with a set a weak learners with similar weight for all the training examples, once we know the misclassified observations, additional weight is given to these observations. This forces the weak learners to focus on those hard examples in the subsequent round. This process is repeated iteratively to combine all decision stumps in order to get the final strong learner using weak learners. As evident from this process the boosting algorithm adapats itself to changing scenario, hence the term adaptive boosting.</p>
+<p>Two main things that adaboost does: 1.Choose the training set for each new classifierbased on results of the previous classifier. 2.Determines the weight to be given to the predicted answer for each classifier while combining the results from the classifiers.</p>
+<p>Predicting donors for CharityML using Adaboost starts by picking a learner and training the same learner on the samples of data repeatedly. In each iteration the people that were misclassified are given higher wights for the next iteration so that the learner focuses more on those observations. At the final step the classification model is obtained by the average of the learners with their respective weights.</p>
+<p>[1] <a href="https://rayli.net/blog/data/top-10-data-mining-algorithms-in-plain-english/">https://rayli.net/blog/data/top-10-data-mining-algorithms-in-plain-english/</a> [2] <a href="https://prateekvjoshi.com/2014/05/05/what-is-adaboost/">https://prateekvjoshi.com/2014/05/05/what-is-adaboost/</a> [3]<a href="http://mccormickml.com/2013/12/13/adaboost-tutorial/">http://mccormickml.com/2013/12/13/adaboost-tutorial/</a></p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
@@ -17243,9 +17618,7 @@ Classifier 1: Fold 5...
 <div class="prompt input_prompt">In&nbsp;[280]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#ilout_test = clean_data(mailout_test)</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="k">import</span> <span class="n">LogisticRegression</span>
-<span class="c1">#clf = clf_A.fit(features_raw, response_raw)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#clf = clf_A.fit(features_raw, response_raw)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">features_raw</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">mailout_test_clean</span> <span class="o">=</span> <span class="n">clean_data</span><span class="p">(</span><span class="n">mailout_test</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">mailout_test</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
