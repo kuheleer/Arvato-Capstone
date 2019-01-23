@@ -20,3 +20,13 @@ Analysis of azdias data and demographics data is followed by identifying the pri
 3. `mailout_train.csv` - Demographics data for individuals who were targets of a marketing campaign (42,982 persons (rows) x 367 (columns)
 
 4. `mailout_test.csv` - Demographics data for individuals who were targets of a marketing campaign (test)42,833 persons (rows) x 366 (columns)
+
+## Libraries Used:
+
+1. sns
+2. literal_eval
+3. Imputer
+4. StandardScaler
+5. KMeans
+6. StratifiedKFold
+7. roc_auc_score
