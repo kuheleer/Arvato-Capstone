@@ -16297,15 +16297,24 @@ Number of rows with missing data from customer dataset:  170916
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Analyssi-of-over-represented-clusters-1,-3,-7">Analyssi of over-represented clusters 1, 3, 7<a class="anchor-link" href="#Analyssi-of-over-represented-clusters-1,-3,-7">&#182;</a></h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[124]:</div>
+<div class="prompt input_prompt">In&nbsp;[302]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cc0</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 <span class="n">cc0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cc0</span><span class="p">)</span>
 <span class="n">cc0</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">cc0</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span><span class="mi">1</span>
-<span class="n">cc0</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">cc1</span><span class="o">=</span><span class="n">cc0</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">cc1</span>
 </pre></div>
 
 </div>
@@ -16318,7 +16327,7 @@ Number of rows with missing data from customer dataset:  170916
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[124]:</div>
+<div class="prompt output_prompt">Out[302]:</div>
 
 
 
@@ -16396,10 +16405,12 @@ Length: 213, dtype: float64</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[133]:</div>
+<div class="prompt input_prompt">In&nbsp;[305]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">components</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cc1</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">customers_1</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
 </pre></div>
 
 </div>
@@ -16412,76 +16423,909 @@ Length: 213, dtype: float64</pre>
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[133]:</div>
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AGER_TYP
+AKT_DAT_KL
+ALTER_KIND1
+BALLRAUM
+ALTERSKATEGORIE_FEIN
+ANZ_HAUSHALTE_AKTIV
+ANZ_HH_TITEL
+D19_BANKEN_GROSS
+D19_GESAMT_ANZ_24
+ANZ_TITEL
+D19_BANKEN_OFFLINE_DATUM
+ARBEIT
+D19_BANKEN_DIREKT
+CJT_TYP_5
+CAMEO_INTL_2015
+D19_LEBENSMITTEL
+CAMEO_DEU_2015
+D19_BEKLEIDUNG_REST
+D19_VERSAND_ANZ_12
+D19_BANKEN_ANZ_24
+ANZ_PERSONEN
+D19_BUCH_CD
+D19_DIGIT_SERV
+D19_LETZTER_KAUF_BRANCHE
+D19_VERSI_ONLINE_QUOTE_12
+CAMEO_DEUG_2015
+HH_DELTA_FLAG
+EXTSEL992
+FINANZ_HAUSBAUER
+CJT_TYP_6
+D19_GESAMT_ONLINE_QUOTE_12
+D19_KONSUMTYP
+D19_BANKEN_REST
+FINANZ_SPARER
+KBA05_HERST2
+D19_KOSMETIK
+KBA13_CCM_1200
+ALTER_KIND4
+KBA05_HERSTTEMP
+D19_VERSICHERUNGEN
+D19_SAMMELARTIKEL
+DSL_FLAG
+KBA05_KRSHERST2
+FINANZTYP
+D19_ENERGIE
+D19_KINDERARTIKEL
+KBA05_CCM3
+D19_GARTEN
+CJT_KATALOGNUTZER
+KBA05_ALTER4
+KBA05_VORB1
+D19_VERSAND_ANZ_24
+KBA05_BAUMAX
+D19_TELKO_OFFLINE_DATUM
+KBA13_CCM_1401_2500
+KBA05_MOD2
+KBA13_CCM_2501
+KBA05_HERST1
+D19_VERSI_ONLINE_DATUM
+D19_BILDUNG
+KBA05_KW1
+KBA05_KRSAQUOT
+FINANZ_ANLEGER
+KBA13_BJ_2008
+KBA05_MOTOR
+KBA13_CCM_0_1400
+KBA05_VORB2
+KBA13_CCM_1400
+KBA13_ALTERHALTER_61
+KBA13_BJ_2004
+KBA05_SEG7
+KBA05_SEG10
+INNENSTADT
+KBA13_ANTG4
+KBA05_ANTG3
+D19_VERSAND_ONLINE_DATUM
+KBA13_BMW
+D19_GESAMT_DATUM
+KBA05_ANTG4
+KBA05_KRSHERST3
+KBA05_MAXSEG
+KBA05_SEG5
+D19_TELKO_ONLINE_QUOTE_12
+FINANZ_UNAUFFAELLIGER
+KBA13_ALTERHALTER_30
+HEALTH_TYP
+KBA05_ALTER2
+D19_SONSTIGE
+KBA13_CCM_2500
+KBA13_ANTG1
+KBA05_ZUL1
+KBA13_CCM_2000
+KBA13_BJ_2009
+D19_RATGEBER
+D19_TELKO_ONLINE_DATUM
+KBA13_AUDI
+KBA05_MOTRAD
+KBA05_MOD1
+KBA05_CCM1
+KBA05_ANTG2
+KBA13_ANZAHL_PKW
+KBA13_ALTERHALTER_60
+KBA13_BJ_2006
+KBA13_BJ_2000
+KBA05_SEG4
+KBA05_SEG2
+KBA05_KRSKLEIN
+KBA05_ANTG1
+KBA05_MOD4
+D19_TELKO_MOBILE
+KBA05_MOD3
+D19_VERSAND_OFFLINE_DATUM
+KBA05_SEG3
+KBA05_MODTEMP
+KBA05_MAXVORB
+KBA13_CCM_1600
+KBA05_HERST5
+EINGEZOGENAM_HH_JAHR
+KBA13_BJ_1999
+KBA05_KRSOBER
+KBA05_ZUL2
+KBA05_DIESEL
+KBA05_KRSHERST1
+D19_FREIZEIT
+KBA05_ANHANG
+KBA05_GBZ
+KBA05_SEG6
+KBA05_KRSVAN
+KBA05_MAXBJ
+ANZ_KINDER
+D19_SCHUHE
+KBA05_ZUL4
+KBA05_FRAU
+KBA13_CCM_1800
+KBA13_ANTG2
+KBA05_ZUL3
+KBA05_HERST3
+KBA13_ALTERHALTER_45
+KBA05_HERST4
+D19_VOLLSORTIMENT
+GEBAEUDETYP_RASTER
+KBA13_BAUMAX
+KBA13_CCM_1000
+CJT_TYP_4
+KBA13_CCM_1500
+KBA05_SEG8
+KBA05_CCM2
+KBA13_AUTOQUOTE
+KBA13_ANTG3
+EWDICHTE
+KBA05_MAXHERST
+GEMEINDETYP
+KBA05_KW2
+KBA05_KRSZUL
+D19_TELKO_REST
+KBA05_MAXAH
+KBA05_ALTER3
+D19_VERSAND_DATUM
+FINANZ_VORSORGER
+D19_VERSI_ANZ_12
+GFK_URLAUBERTYP
+GEBAEUDETYP
+KBA05_MOD8
+GEBURTSJAHR
+EINGEFUEGT_AM
+D19_LOTTO
+KBA05_ALTER1
+KBA05_AUTOQUOT
+D19_GESAMT_ANZ_12
+KBA05_CCM4
+KBA05_SEG1
+D19_SOZIALES
+FINANZ_MINIMALIST
+D19_TECHNIK
+KBA05_KW3
+D19_VERSI_DATUM
+KBA05_VORB0
+GREEN_AVANTGARDE
+D19_REISEN
+D19_VERSAND_REST
+D19_VERSI_OFFLINE_DATUM
+D19_VERSI_ANZ_24
+CJT_TYP_2
+D19_TIERARTIKEL
+KBA05_SEG9
+ANZ_STATISTISCHE_HAUSHALTE
+D19_DROGERIEARTIKEL
+D19_NAHRUNGSERGAENZUNG
+CJT_TYP_1
+HH_EINKOMMEN_SCORE
+D19_WEIN_FEINKOST
+FIRMENDICHTE
+D19_BANKEN_ONLINE_QUOTE_12
+D19_VERSAND_ONLINE_QUOTE_12
+D19_GESAMT_OFFLINE_DATUM
+D19_HAUS_DEKO
+D19_BIO_OEKO
+D19_HANDWERK
+CJT_GESAMTTYP
+D19_GESAMT_ONLINE_DATUM
+D19_KONSUMTYP_MAX
+D19_TELKO_DATUM
+D19_BANKEN_DATUM
+D19_BANKEN_ONLINE_DATUM
+D19_TELKO_ANZ_12
+CJT_TYP_3
+D19_TELKO_ANZ_24
+D19_BANKEN_ANZ_12
+D19_BANKEN_LOKAL
+D19_BEKLEIDUNG_GEH
+ALTER_HH
+ALTER_KIND3
+ALTER_KIND2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[306]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cc0</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">cc0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cc0</span><span class="p">)</span>
+<span class="n">cc0</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">cc0</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span><span class="mi">1</span>
+<span class="n">cc1</span><span class="o">=</span><span class="n">cc0</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">cc1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[306]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>D19_KONSUMTYP_MAX             0.0028
-KOMBIALTER                    0.0023
-D19_GESAMT_DATUM              0.0020
-SEMIO_REL                     0.0017
-D19_VERSAND_DATUM             0.0017
-D19_GESAMT_ONLINE_DATUM       0.0015
-FINANZ_ANLEGER                0.0015
-FINANZ_UNAUFFAELLIGER         0.0014
-SEMIO_KRIT                    0.0014
-D19_VERSAND_ONLINE_DATUM      0.0013
-CJT_TYP_1                     0.0012
-CJT_TYP_2                     0.0012
-FINANZ_SPARER                 0.0011
-SEMIO_KAEM                    0.0011
-SEMIO_PFLICHT                 0.0009
-SEMIO_FAM                     0.0009
-SEMIO_DOM                     0.0009
-D19_GESAMT_OFFLINE_DATUM      0.0009
-D19_VERSAND_OFFLINE_DATUM     0.0008
-RT_KEIN_ANREIZ                0.0008
-SEMIO_MAT                     0.0007
-CJT_KATALOGNUTZER             0.0005
-SEMIO_RAT                     0.0005
-D19_VERSI_DATUM               0.0005
-FINANZTYP_4.0                 0.0004
-CJT_GESAMTTYP_6.0             0.0004
-LP_STATUS_FEIN_5.0            0.0004
-D19_BANKEN_DATUM              0.0004
-RT_SCHNAEPPCHEN               0.0003
-ZABEOTYP_3.0                  0.0003
-                               ...  
-KBA13_SITZE_4                -0.0016
-KBA05_AUTOQUOT               -0.0016
-KBA13_MERCEDES               -0.0016
-KBA13_SITZE_6                -0.0016
-KBA13_HERST_BMW_BENZ         -0.0016
-MOBI_REGIO                   -0.0017
-KBA05_MAXAH                  -0.0017
-PLZ8_GBZ                     -0.0017
-REGIOTYP                     -0.0017
-FIRMENDICHTE                 -0.0017
-KBA13_GBZ                    -0.0018
-SEMIO_VERT                   -0.0018
-GEBAEUDETYP_RASTER           -0.0018
-EWDICHTE                     -0.0018
-PLZ8_HHZ                     -0.0018
-KBA13_HHZ                    -0.0018
-D19_SONSTIGE                 -0.0019
-VK_DHT4A                     -0.0019
-W_KEIT_KIND_HH               -0.0019
-UMFELD_JUNG                  -0.0020
-VK_DISTANZ                   -0.0020
-BALLRAUM                     -0.0020
-ANZ_STATISTISCHE_HAUSHALTE   -0.0021
-ANZ_HAUSHALTE_AKTIV          -0.0022
-INNENSTADT                   -0.0023
-ORTSGR_KLS9                  -0.0024
-DECADE                       -0.0025
-WOHNDAUER_2008               -0.0038
-KBA13_ANZAHL_PKW             -0.3464
-MIN_GEBAEUDEJAHR             -0.9378
-Name: Dimension 1, Length: 621, dtype: float64</pre>
+<pre>6        0.347729
+115      0.206597
+29       0.163513
+5        0.148634
+27       0.123035
+42       0.122549
+38       0.108529
+32       0.099986
+20       0.091416
+117      0.090891
+73       0.090625
+112      0.090061
+158      0.089323
+104      0.086250
+92       0.083683
+87       0.082510
+7        0.076401
+57       0.075431
+47       0.074484
+79       0.072584
+164      0.067034
+136      0.066518
+80       0.065121
+124      0.064800
+30       0.061867
+174      0.061507
+163      0.059208
+64       0.058396
+161      0.056528
+119      0.056428
+          ...    
+170     -0.054651
+153     -0.055807
+108     -0.056261
+11      -0.056400
+106     -0.056978
+171     -0.059895
+100     -0.060091
+133     -0.060839
+71      -0.061184
+102     -0.063076
+114     -0.065481
+18      -0.077602
+40      -0.077866
+4       -0.085023
+96      -0.085526
+35      -0.089269
+33      -0.092500
+26      -0.092853
+88      -0.099555
+118     -0.110270
+14      -0.117243
+93      -0.139064
+60      -0.157742
+28      -0.187315
+8       -0.242268
+10      -0.276913
+9       -0.397817
+16      -0.624641
+2     -328.885235
+1     -431.929459
+Length: 213, dtype: float64</pre>
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[307]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cc1</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">customers_1</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ALTER_KIND3
+HEALTH_TYP
+D19_BANKEN_ANZ_24
+ALTER_KIND2
+CJT_TYP_6
+D19_BUCH_CD
+D19_BEKLEIDUNG_GEH
+D19_BANKEN_GROSS
+CJT_GESAMTTYP
+HH_EINKOMMEN_SCORE
+D19_TELKO_DATUM
+GEMEINDETYP
+KBA05_MAXVORB
+FINANZ_SPARER
+D19_VERSI_ONLINE_QUOTE_12
+D19_VERSI_ANZ_12
+ALTER_KIND4
+D19_KONSUMTYP
+D19_GARTEN
+D19_TIERARTIKEL
+KBA05_MODTEMP
+KBA05_GBZ
+D19_VERSAND_ANZ_12
+KBA05_ANTG1
+D19_BANKEN_DATUM
+KBA05_SEG7
+KBA05_MOD8
+D19_RATGEBER
+KBA05_MOD3
+KBA05_ALTER1
+KBA05_ALTER4
+KBA05_MOD4
+D19_SAMMELARTIKEL
+D19_GESAMT_ANZ_24
+D19_GESAMT_ONLINE_QUOTE_12
+KBA05_KRSHERST2
+KBA13_ALTERHALTER_60
+KBA05_SEG2
+KBA05_SEG9
+D19_BEKLEIDUNG_REST
+KBA05_VORB1
+KBA13_ANTG4
+EINGEFUEGT_AM
+FINANZ_MINIMALIST
+KBA13_BMW
+KBA05_HERST4
+KBA05_BAUMAX
+D19_TELKO_ONLINE_DATUM
+KBA05_ZUL2
+CJT_KATALOGNUTZER
+KBA05_MOTOR
+D19_KOSMETIK
+D19_TELKO_OFFLINE_DATUM
+GFK_URLAUBERTYP
+FINANZTYP
+D19_VERSI_DATUM
+D19_HANDWERK
+KBA05_MAXSEG
+CJT_TYP_2
+KBA13_ANTG2
+KBA05_KRSHERST3
+CJT_TYP_3
+D19_SOZIALES
+D19_KINDERARTIKEL
+KBA05_MOTRAD
+KBA05_KW2
+D19_REISEN
+ARBEIT
+CJT_TYP_4
+KBA05_SEG6
+D19_TELKO_ONLINE_QUOTE_12
+D19_VERSAND_REST
+KBA05_KW1
+KBA13_ALTERHALTER_30
+D19_VERSI_OFFLINE_DATUM
+KBA05_SEG10
+KBA13_CCM_2500
+D19_GESAMT_DATUM
+KBA05_FRAU
+D19_BIO_OEKO
+KBA05_HERST2
+D19_KONSUMTYP_MAX
+D19_BANKEN_OFFLINE_DATUM
+D19_SCHUHE
+D19_VERSAND_ONLINE_DATUM
+D19_WEIN_FEINKOST
+KBA13_ALTERHALTER_45
+D19_TELKO_REST
+CJT_TYP_1
+GEBAEUDETYP_RASTER
+D19_NAHRUNGSERGAENZUNG
+D19_HAUS_DEKO
+KBA13_CCM_1400
+KBA13_CCM_1800
+KBA13_ANTG3
+KBA13_CCM_1200
+KBA05_MOD1
+D19_VERSAND_ANZ_24
+D19_LOTTO
+KBA13_CCM_1600
+KBA05_SEG8
+FINANZ_UNAUFFAELLIGER
+FINANZ_ANLEGER
+KBA05_HERST3
+KBA05_ZUL1
+D19_GESAMT_ANZ_12
+KBA05_KRSHERST1
+D19_VOLLSORTIMENT
+KBA05_CCM2
+ALTER_HH
+ANZ_STATISTISCHE_HAUSHALTE
+KBA05_ANTG2
+EWDICHTE
+KBA13_BJ_2006
+D19_TELKO_ANZ_24
+GEBURTSJAHR
+KBA13_CCM_2000
+KBA13_BJ_2004
+KBA05_ANTG3
+D19_DIGIT_SERV
+KBA05_KRSAQUOT
+HH_DELTA_FLAG
+KBA13_ANTG1
+KBA13_CCM_2501
+KBA13_BJ_2009
+KBA13_CCM_1500
+KBA05_SEG5
+D19_VERSI_ONLINE_DATUM
+KBA13_CCM_0_1400
+KBA05_MAXBJ
+KBA13_BJ_1999
+KBA05_VORB2
+D19_FREIZEIT
+D19_TECHNIK
+D19_GESAMT_OFFLINE_DATUM
+KBA05_CCM3
+KBA13_CCM_1000
+KBA05_MAXAH
+CAMEO_DEU_2015
+KBA05_ALTER3
+KBA05_MOD2
+KBA13_BJ_2008
+KBA05_ZUL4
+KBA05_SEG1
+D19_SONSTIGE
+KBA05_KRSVAN
+KBA13_ALTERHALTER_61
+KBA13_CCM_1401_2500
+EINGEZOGENAM_HH_JAHR
+KBA05_ANTG4
+KBA13_AUTOQUOTE
+D19_DROGERIEARTIKEL
+KBA05_DIESEL
+KBA05_HERSTTEMP
+KBA05_KRSOBER
+D19_GESAMT_ONLINE_DATUM
+CAMEO_INTL_2015
+D19_VERSAND_ONLINE_QUOTE_12
+D19_BANKEN_DIREKT
+KBA05_KRSZUL
+D19_LETZTER_KAUF_BRANCHE
+KBA05_ZUL3
+D19_ENERGIE
+D19_TELKO_MOBILE
+ANZ_PERSONEN
+KBA13_BAUMAX
+KBA13_AUDI
+KBA05_CCM1
+KBA05_AUTOQUOT
+D19_BANKEN_ONLINE_QUOTE_12
+GEBAEUDETYP
+KBA05_HERST5
+KBA05_MAXHERST
+KBA13_BJ_2000
+D19_VERSAND_DATUM
+KBA05_KRSKLEIN
+KBA05_ANHANG
+KBA05_VORB0
+KBA13_ANZAHL_PKW
+D19_BANKEN_REST
+D19_VERSAND_OFFLINE_DATUM
+KBA05_ALTER2
+KBA05_HERST1
+KBA05_SEG3
+KBA05_KW3
+FIRMENDICHTE
+ANZ_KINDER
+FINANZ_VORSORGER
+KBA05_SEG4
+EXTSEL992
+KBA05_CCM4
+D19_TELKO_ANZ_12
+FINANZ_HAUSBAUER
+GREEN_AVANTGARDE
+CAMEO_DEUG_2015
+D19_BILDUNG
+ALTER_KIND1
+DSL_FLAG
+D19_BANKEN_ONLINE_DATUM
+D19_BANKEN_LOKAL
+CJT_TYP_5
+D19_VERSI_ANZ_24
+INNENSTADT
+ANZ_TITEL
+D19_VERSICHERUNGEN
+D19_LEBENSMITTEL
+D19_BANKEN_ANZ_12
+ALTERSKATEGORIE_FEIN
+ANZ_HH_TITEL
+ANZ_HAUSHALTE_AKTIV
+BALLRAUM
+AKT_DAT_KL
+AGER_TYP
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[308]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cc0</span> <span class="o">=</span> <span class="n">kmeans</span><span class="o">.</span><span class="n">cluster_centers_</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+<span class="n">cc0</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">cc0</span><span class="p">)</span>
+<span class="n">cc0</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">cc0</span><span class="o">.</span><span class="n">index</span> <span class="o">+</span><span class="mi">1</span>
+<span class="n">cc1</span><span class="o">=</span><span class="n">cc0</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">cc1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[308]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>5        0.324900
+8        0.172627
+60       0.144989
+10       0.135446
+9        0.131900
+93       0.094948
+11       0.093875
+6        0.093552
+33       0.092290
+22       0.088762
+88       0.086119
+18       0.082448
+58       0.067779
+108      0.051330
+52       0.047032
+61       0.046279
+177      0.043699
+118      0.043044
+127      0.040601
+43       0.040128
+40       0.040045
+116      0.038639
+37       0.038441
+153      0.038199
+25       0.037147
+171      0.037069
+106      0.036734
+81       0.036498
+109      0.035222
+154      0.033982
+          ...    
+190     -0.037698
+119     -0.038216
+213     -0.039216
+17      -0.040342
+84      -0.040893
+144     -0.041317
+174     -0.042809
+31      -0.044147
+32      -0.044572
+161     -0.046806
+87      -0.047141
+75      -0.054895
+46      -0.056405
+146     -0.057304
+86      -0.062909
+72      -0.063673
+49      -0.066190
+24      -0.068521
+158     -0.070599
+115     -0.079253
+73      -0.083042
+19      -0.087903
+14      -0.094868
+38      -0.116227
+42      -0.145773
+7       -0.200345
+3       -0.231637
+16      -0.454129
+2      -76.784210
+1     -525.122260
+Length: 213, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[309]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cc1</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">customers_1</span><span class="o">.</span><span class="n">columns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ALTER_KIND2
+ALTERSKATEGORIE_FEIN
+D19_LEBENSMITTEL
+ANZ_HH_TITEL
+ANZ_HAUSHALTE_AKTIV
+D19_VERSICHERUNGEN
+ANZ_KINDER
+ALTER_KIND3
+D19_BANKEN_LOKAL
+CJT_TYP_1
+D19_VERSI_ANZ_24
+CAMEO_DEUG_2015
+D19_KONSUMTYP_MAX
+FIRMENDICHTE
+D19_GESAMT_ONLINE_DATUM
+D19_LETZTER_KAUF_BRANCHE
+KBA05_VORB0
+INNENSTADT
+KBA05_ANTG4
+D19_DIGIT_SERV
+D19_BILDUNG
+HH_DELTA_FLAG
+D19_BANKEN_REST
+KBA05_KW3
+CJT_TYP_4
+KBA05_SEG4
+FINANZ_VORSORGER
+D19_VERSAND_ANZ_24
+GEBAEUDETYP
+KBA05_MAXAH
+KBA13_ANZAHL_PKW
+KBA05_SEG1
+KBA13_CCM_1000
+KBA05_DIESEL
+D19_ENERGIE
+KBA05_HERST2
+CJT_KATALOGNUTZER
+GEBAEUDETYP_RASTER
+ANZ_PERSONEN
+D19_BANKEN_ONLINE_DATUM
+KBA05_MAXSEG
+D19_VERSAND_DATUM
+KBA05_KRSOBER
+KBA13_CCM_0_1400
+KBA05_CCM4
+KBA05_HERST5
+KBA05_ALTER3
+D19_VERSAND_OFFLINE_DATUM
+KBA05_MOD2
+KBA05_ZUL4
+KBA05_ANHANG
+D19_TIERARTIKEL
+CJT_TYP_6
+D19_DROGERIEARTIKEL
+KBA05_SEG3
+KBA05_CCM1
+D19_SONSTIGE
+EWDICHTE
+KBA05_SEG6
+D19_BIO_OEKO
+KBA05_CCM2
+D19_VOLLSORTIMENT
+EINGEFUEGT_AM
+KBA05_VORB2
+KBA05_CCM3
+KBA05_MOTRAD
+KBA13_ALTERHALTER_61
+D19_TELKO_ONLINE_DATUM
+KBA13_CCM_1200
+KBA05_ZUL1
+KBA05_AUTOQUOT
+FINANZ_ANLEGER
+CJT_GESAMTTYP
+EXTSEL992
+KBA05_KRSZUL
+KBA05_MOD1
+FINANZ_UNAUFFAELLIGER
+KBA05_MAXHERST
+KBA05_SEG2
+D19_BANKEN_ONLINE_QUOTE_12
+KBA05_HERST3
+D19_VERSI_ONLINE_DATUM
+D19_LOTTO
+KBA13_CCM_1401_2500
+D19_TELKO_MOBILE
+KBA05_BAUMAX
+D19_GARTEN
+D19_GESAMT_DATUM
+KBA13_ALTERHALTER_60
+D19_TELKO_ANZ_12
+CJT_TYP_5
+KBA13_CCM_1800
+KBA05_HERST1
+D19_WEIN_FEINKOST
+KBA13_BAUMAX
+D19_GESAMT_ONLINE_QUOTE_12
+EINGEZOGENAM_HH_JAHR
+KBA05_KRSKLEIN
+D19_SAMMELARTIKEL
+GEBURTSJAHR
+KBA05_ALTER2
+KBA05_KRSHERST2
+FINANZTYP
+KBA05_ANTG3
+KBA13_BMW
+KBA05_KRSVAN
+KBA13_ANTG4
+D19_BEKLEIDUNG_REST
+DSL_FLAG
+D19_GESAMT_OFFLINE_DATUM
+KBA05_SEG8
+KBA05_KW2
+D19_VERSI_OFFLINE_DATUM
+D19_TECHNIK
+KBA05_MAXBJ
+D19_BANKEN_OFFLINE_DATUM
+KBA05_ZUL3
+D19_BANKEN_ANZ_24
+D19_BANKEN_DATUM
+D19_TELKO_REST
+D19_KINDERARTIKEL
+KBA13_BJ_2006
+KBA13_AUDI
+KBA13_ANTG2
+KBA05_SEG10
+KBA13_BJ_1999
+KBA05_KRSAQUOT
+D19_HANDWERK
+D19_SCHUHE
+KBA13_BJ_2004
+FINANZ_SPARER
+KBA05_HERSTTEMP
+D19_VERSAND_ANZ_12
+KBA13_CCM_2500
+KBA05_ALTER4
+KBA13_CCM_1600
+D19_VERSI_DATUM
+KBA05_SEG5
+KBA13_ANTG1
+D19_NAHRUNGSERGAENZUNG
+KBA05_GBZ
+KBA05_KW1
+GEMEINDETYP
+KBA05_ANTG1
+KBA13_BJ_2008
+HH_EINKOMMEN_SCORE
+D19_VERSAND_ONLINE_QUOTE_12
+KBA05_ZUL2
+D19_KOSMETIK
+GREEN_AVANTGARDE
+ANZ_STATISTISCHE_HAUSHALTE
+FINANZ_HAUSBAUER
+D19_TELKO_ONLINE_QUOTE_12
+KBA13_BJ_2009
+KBA13_BJ_2000
+D19_REISEN
+KBA13_ALTERHALTER_45
+KBA05_FRAU
+KBA13_CCM_2000
+GFK_URLAUBERTYP
+D19_RATGEBER
+KBA05_VORB1
+D19_VERSI_ONLINE_QUOTE_12
+KBA05_MODTEMP
+KBA13_CCM_1500
+D19_GESAMT_ANZ_12
+KBA05_HERST4
+CJT_TYP_2
+KBA05_ANTG2
+KBA05_MOTOR
+KBA13_ALTERHALTER_30
+D19_HAUS_DEKO
+KBA05_SEG9
+KBA13_AUTOQUOTE
+KBA05_MOD8
+D19_KONSUMTYP
+FINANZ_MINIMALIST
+KBA13_CCM_1400
+KBA05_MOD4
+D19_SOZIALES
+ALTER_KIND1
+ARBEIT
+D19_BANKEN_ANZ_12
+KBA13_ANTG3
+KBA05_ALTER1
+KBA13_CCM_2501
+CAMEO_DEU_2015
+D19_VERSAND_ONLINE_DATUM
+KBA05_KRSHERST1
+KBA05_SEG7
+D19_BANKEN_DIREKT
+D19_BANKEN_GROSS
+KBA05_MOD3
+D19_VERSI_ANZ_12
+D19_TELKO_OFFLINE_DATUM
+D19_FREIZEIT
+KBA05_KRSHERST3
+D19_VERSAND_REST
+D19_TELKO_ANZ_24
+D19_GESAMT_ANZ_24
+CJT_TYP_3
+KBA05_MAXVORB
+HEALTH_TYP
+D19_TELKO_DATUM
+CAMEO_INTL_2015
+ANZ_TITEL
+D19_BEKLEIDUNG_GEH
+D19_BUCH_CD
+ALTER_KIND4
+ALTER_HH
+BALLRAUM
+AKT_DAT_KL
+AGER_TYP
+</pre>
+</div>
 </div>
 
 </div>
@@ -17245,6 +18089,17 @@ Slow training would not have much impact as the model needs to be run periodical
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Metric-to-evaluate-the-model">Metric to evaluate the model<a class="anchor-link" href="#Metric-to-evaluate-the-model">&#182;</a></h4><p>ROC-AUC score is considers the rank of each prediction and not its absolute value.
+It is independent of the threshold set for classificaauc score of a random classifier for balanced data is 0.5tion 
+The problem given is assumed to be balanced. AUC score of a random classifier for balanced data is 0.5</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[155]:</div>
@@ -17339,6 +18194,96 @@ Classifier 1: Fold 5...
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Improvement">Improvement<a class="anchor-link" href="#Improvement">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[314]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="k">import</span> <span class="n">roc_auc_score</span>
+<span class="kn">from</span> <span class="nn">sklearn.grid_search</span> <span class="k">import</span> <span class="n">GridSearchCV</span>
+
+<span class="n">model_scores</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">AdaBoostClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">clf_C</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_estimators&#39;</span><span class="p">:[</span><span class="mi">50</span><span class="p">],</span><span class="s1">&#39;learning_rate&#39;</span><span class="p">:[</span><span class="mf">1.0</span><span class="p">]}</span>
+<span class="n">clf_A</span> <span class="o">=</span> <span class="n">GridSearchCV</span><span class="p">(</span><span class="n">clf_A</span><span class="p">,</span> <span class="n">parameters</span><span class="p">)</span>
+        
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">clf</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">clf_A</span><span class="p">]):</span>
+                   
+    <span class="c1"># Create machine learning pipeline</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">([</span>
+        <span class="p">(</span><span class="s1">&#39;imp&#39;</span><span class="p">,</span> <span class="n">dataframe_imputer</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;scale&#39;</span><span class="p">,</span> <span class="n">scaler</span><span class="p">),</span>
+        <span class="p">(</span><span class="s1">&#39;clf&#39;</span><span class="p">,</span> <span class="n">clf</span><span class="p">)</span>
+    <span class="p">])</span>
+
+    <span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Perform 5-fold validation</span>
+    <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">skf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">features_raw</span><span class="p">,</span> <span class="n">response_raw</span><span class="p">):</span>
+        <span class="n">j</span><span class="o">+=</span><span class="mi">1</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Classifier </span><span class="si">{}</span><span class="s1">: Fold </span><span class="si">{}</span><span class="s1">...&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">))</span>
+        
+        <span class="c1"># Split the data into training and test sets</span>
+        <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">features_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">features_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+        <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">response_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">response_raw</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
+
+        <span class="c1"># Train using the pipeline</span>
+        <span class="n">pipeline</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+        <span class="c1">#Predict on the test data</span>
+        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+        <span class="n">score</span> <span class="o">=</span> <span class="n">roc_auc_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+
+    <span class="n">model_scores</span><span class="p">[</span><span class="n">clf</span><span class="p">]</span> <span class="o">=</span> <span class="n">scores</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Classifier 1: Fold 1...
+0.49988215884987036
+Classifier 1: Fold 2...
+0.5
+Classifier 1: Fold 3...
+0.5
+Classifier 1: Fold 4...
+0.5
+Classifier 1: Fold 5...
+0.5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
